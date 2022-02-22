@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: bookApp-apiGateway
+  
+  cloud:
+    gateway:
+      routes:
+      - id: bookApp
+        uri:
+          lb://bookApp
+        predicates:
+        - Path=/books/**
+      
+      - id: user-app
+        uri:
+          lb://user-app
+        predicates:
+        - Path=/users/**
+    
+server:
+  port: 8888
+  
+
